@@ -19,7 +19,7 @@ def harris_corner_detection(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     dst = cv2.cornerHarris(gray, 2, 3, 0.04)
     dst = cv2.dilate(dst, None)
-    image[dst > 0.01 * dst.max()] = [0, 255, 255]
+    image[dst > 0.01 * dst.max()] = [0, 0, 255]  # Red for detected corners
     return image
 
 # Apply Harris Corner Detection on each image
@@ -47,8 +47,8 @@ sift = cv2.SIFT_create()
 keypoints1, descriptors1 = sift.detectAndCompute(img1, None)
 keypoints2, descriptors2 = sift.detectAndCompute(img2, None)
 
-img_with_keypoints1 = cv2.drawKeypoints(img1, keypoints1, None, color=(0, 255, 255))
-img_with_keypoints2 = cv2.drawKeypoints(img2, keypoints2, None, color=(0, 255, 255))
+img_with_keypoints1 = cv2.drawKeypoints(img1, keypoints1, None)
+img_with_keypoints2 = cv2.drawKeypoints(img2, keypoints2, None)
 
 # Concatenate SIFT Keypoints results with separator
 sift_concat = cv2.hconcat([img_with_keypoints1, separator, img_with_keypoints2])
