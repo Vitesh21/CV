@@ -26,6 +26,8 @@ Run the script:
 bash
 Copy code
 python feature_detection.py
+
+
 The script performs:
 
 Harris Corner Detection on both images.
